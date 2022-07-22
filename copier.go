@@ -66,7 +66,7 @@ func CopyWithOptional(toValue interface{}, fromValue interface{}, opts ...Option
 	for _, opt := range opts {
 		opt(o)
 	}
-	return copier(toValue, fromValue, o)
+	return copier(toValue, fromValue, *o)
 }
 
 func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) {
@@ -119,7 +119,6 @@ func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) 
 
 	// Just set it if possible to assign for normal types
 	if from.Kind() != reflect.Slice && from.Kind() != reflect.Struct && from.Kind() != reflect.Map && (from.Type().AssignableTo(to.Type()) || from.Type().ConvertibleTo(to.Type())) {
-		fmt.Println(1)
 		if !isPtrFrom || !opt.DeepCopy {
 			to.Set(from.Convert(to.Type()))
 		} else {
@@ -131,7 +130,6 @@ func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) 
 	}
 
 	if from.Kind() != reflect.Slice && fromType.Kind() == reflect.Map && toType.Kind() == reflect.Map {
-		fmt.Println(2)
 		if !fromType.Key().ConvertibleTo(toType.Key()) {
 			return ErrMapKeyNotMatch
 		}
@@ -170,7 +168,6 @@ func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) 
 	}
 
 	if from.Kind() == reflect.Slice && to.Kind() == reflect.Slice && fromType.ConvertibleTo(toType) {
-		fmt.Println(3)
 		if to.IsNil() {
 			slice := reflect.MakeSlice(reflect.SliceOf(to.Type().Elem()), from.Len(), from.Cap())
 			to.Set(slice)
@@ -193,13 +190,11 @@ func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) 
 	}
 
 	if fromType.Kind() != reflect.Struct || toType.Kind() != reflect.Struct {
-		fmt.Println(4)
 		// skip not supported type
 		return
 	}
 
 	if from.Kind() == reflect.Slice || to.Kind() == reflect.Slice {
-		fmt.Println(5)
 		isSlice = true
 		if from.Kind() == reflect.Slice {
 			amount = from.Len()
@@ -211,7 +206,6 @@ func copier(toValue interface{}, fromValue interface{}, opt Option) (err error) 
 	}
 
 	for i := 0; i < amount; i++ {
-		fmt.Println(6)
 		var dest, source reflect.Value
 
 		if isSlice {
