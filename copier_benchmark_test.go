@@ -1,4 +1,4 @@
-package copier_copyer_test
+package copier_test
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ func BenchmarkCopyStruct(b *testing.B) {
 	var fakeAge int32 = 12
 	user := User{Name: "Jinzhu", Nickname: "jinzhu", Age: 18, FakeAge: &fakeAge, Role: "Admin", Notes: []string{"hello world", "welcome"}, flags: []byte{'x'}}
 	for x := 0; x < b.N; x++ {
-		copier_copyer.Copy(&Employee{}, &user)
+		copier.Copy(&Employee{}, &user)
 	}
 }
 
@@ -19,7 +19,7 @@ func BenchmarkCopyStructFields(b *testing.B) {
 	var fakeAge int32 = 12
 	user := User{Name: "Jinzhu", Nickname: "jinzhu", Age: 18, FakeAge: &fakeAge, Role: "Admin", Notes: []string{"hello world", "welcome"}, flags: []byte{'x'}}
 	for x := 0; x < b.N; x++ {
-		copier_copyer.Copy(&Employee{}, &user)
+		copier.Copy(&Employee{}, &user)
 	}
 }
 

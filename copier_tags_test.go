@@ -1,4 +1,4 @@
-package copier_copyer_test
+package copier_test
 
 import (
 	"testing"
@@ -29,7 +29,7 @@ type User2 struct {
 func TestCopyTagIgnore(t *testing.T) {
 	employee := EmployeeTags{ID: 100}
 	user := User1{Name: "Dexter Ledesma", DOB: "1 November, 1970", Address: "21 Jump Street", ID: 12345}
-	copier_copyer.Copy(&employee, user)
+	copier.Copy(&employee, user)
 	if employee.ID == user.ID {
 		t.Error("Was not expected to copy IDs")
 	}
@@ -46,7 +46,7 @@ func TestCopyTagMust(t *testing.T) {
 			t.Error("Expected a panic.")
 		}
 	}()
-	copier_copyer.Copy(employee, user)
+	copier.Copy(employee, user)
 }
 
 func TestCopyTagFieldName(t *testing.T) {
@@ -69,7 +69,7 @@ func TestCopyTagFieldName(t *testing.T) {
 			FieldB: "FieldB->Field2",
 			FieldC: "FieldC->Field3",
 		}
-		err := copier_copyer.Copy(dst, src)
+		err := copier.Copy(dst, src)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -98,7 +98,7 @@ func TestCopyTagFieldName(t *testing.T) {
 		src := &SrcTags{
 			field: "field->Field1",
 		}
-		err := copier_copyer.Copy(dst, src)
+		err := copier.Copy(dst, src)
 		if err == nil {
 			t.Fatal("must validate error")
 		}

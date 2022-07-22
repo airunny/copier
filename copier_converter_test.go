@@ -1,4 +1,4 @@
-package copier_copyer_test
+package copier_test
 
 import (
 	"errors"
@@ -35,13 +35,13 @@ func TestCopyWithTypeConverters(t *testing.T) {
 
 	var dst DestStruct
 
-	err := copier_copyer.CopyWithOption(&dst, &src, copier_copyer.Option{
+	err := copier.CopyWithOption(&dst, &src, copier.Option{
 		IgnoreEmpty: true,
 		DeepCopy:    true,
-		Converters: []copier_copyer.TypeConverter{
+		Converters: []copier.TypeConverter{
 			{
 				SrcType: time.Time{},
-				DstType: copier_copyer.String,
+				DstType: copier.String,
 				Fn: func(src interface{}) (interface{}, error) {
 					s, ok := src.(time.Time)
 
@@ -53,8 +53,8 @@ func TestCopyWithTypeConverters(t *testing.T) {
 				},
 			},
 			{
-				SrcType: copier_copyer.String,
-				DstType: copier_copyer.Int,
+				SrcType: copier.String,
+				DstType: copier.Int,
 				Fn: func(src interface{}) (interface{}, error) {
 					s, ok := src.(string)
 
@@ -108,13 +108,13 @@ func TestCopyWithConverterAndAnnotation(t *testing.T) {
 
 	var dst DestStruct
 
-	err := copier_copyer.CopyWithOption(&dst, &src, copier_copyer.Option{
+	err := copier.CopyWithOption(&dst, &src, copier.Option{
 		IgnoreEmpty: true,
 		DeepCopy:    true,
-		Converters: []copier_copyer.TypeConverter{
+		Converters: []copier.TypeConverter{
 			{
-				SrcType: copier_copyer.String,
-				DstType: copier_copyer.String,
+				SrcType: copier.String,
+				DstType: copier.String,
 				Fn: func(src interface{}) (interface{}, error) {
 					s, ok := src.(string)
 
@@ -155,12 +155,12 @@ func TestCopyWithConverterStrToStrPointer(t *testing.T) {
 
 	ptrStrType := ""
 
-	err := copier_copyer.CopyWithOption(&dst, &src, copier_copyer.Option{
+	err := copier.CopyWithOption(&dst, &src, copier.Option{
 		IgnoreEmpty: true,
 		DeepCopy:    true,
-		Converters: []copier_copyer.TypeConverter{
+		Converters: []copier.TypeConverter{
 			{
-				SrcType: copier_copyer.String,
+				SrcType: copier.String,
 				DstType: &ptrStrType,
 				Fn: func(src interface{}) (interface{}, error) {
 					s, _ := src.(string)

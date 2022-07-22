@@ -1,4 +1,4 @@
-package copier_copyer
+package copier
 
 import "errors"
 

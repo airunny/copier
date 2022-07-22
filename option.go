@@ -1,4 +1,4 @@
-package copier_copyer
+package copier
 
 type Option struct {
 	// setting this value to true will ignore copying zero values of all the fields, including bools, as well as a

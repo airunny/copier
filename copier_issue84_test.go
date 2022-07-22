@@ -1,4 +1,4 @@
-package copier_copyer_test
+package copier_test
 
 import (
 	"testing"
@@ -45,7 +45,7 @@ func TestIssue84(t *testing.T) {
 			Field1: "1",
 			Field2: "2",
 		}
-		err := copier_copyer.Copy(&embedder, &embedded)
+		err := copier.Copy(&embedder, &embedded)
 		if err != nil {
 			t.Errorf("unable to copy: %s", err)
 		}
@@ -79,8 +79,8 @@ func TestIssue84(t *testing.T) {
 		destObj1 := Work{}
 		destObj2 := NotWork{}
 
-		copier_copyer.CopyWithOption(&destObj1, &workObj, copier_copyer.Option{IgnoreEmpty: true, DeepCopy: false})
+		copier.CopyWithOption(&destObj1, &workObj, copier.Option{IgnoreEmpty: true, DeepCopy: false})
 
-		copier_copyer.CopyWithOption(&destObj2, &notWorkObj, copier_copyer.Option{IgnoreEmpty: true, DeepCopy: false})
+		copier.CopyWithOption(&destObj2, &notWorkObj, copier.Option{IgnoreEmpty: true, DeepCopy: false})
 	})
 }
