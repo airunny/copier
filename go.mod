@@ -1,3 +1,3 @@
-module gitlab.shuinfo.tech/golang/copier
+module github.com/airunny/copier
 
 go 1.17

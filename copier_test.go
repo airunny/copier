@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.shuinfo.tech/golang/copier"
+	"github.com/airunny/copier"
 )
 
 type User struct {

@@ -3,7 +3,7 @@ package copier_test
 import (
 	"testing"
 
-	"gitlab.shuinfo.tech/golang/copier"
+	"github.com/airunny/copier"
 )
 
 type EmployeeTags struct {

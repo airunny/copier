@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"gitlab.shuinfo.tech/golang/copier"
+	"github.com/airunny/copier"
 )
 
 func BenchmarkCopyStruct(b *testing.B) {
